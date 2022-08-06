@@ -21,11 +21,17 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 	testImplementation group: 'net.runelite', name:'client', version: runeLiteVersion
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
+	
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.6.1'
+	testImplementation group: 'com.google.inject', name: 'guice', version: '4.1.0'
+	testImplementation group: 'com.google.inject.extensions', name: 'guice-testlib', version: '4.1.0'
+	testImplementation group: 'com.google.inject.extensions', name: 'guice-grapher', version: '4.1.0'
+	
 }
 
-group = 'com.example'
-version = '1.0-SNAPSHOT'
-sourceCompatibility = '1.8'
+group = 'com.bank.swapper'
+version = '1.0.0'
+sourceCompatibility = '11'
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
