@@ -1,5 +1,6 @@
 package com.bank.swapper;
 
+import com.google.common.collect.Sets;
 import com.google.inject.Provides;
 
 import java.util.Set;
@@ -36,9 +37,9 @@ public class BankMenuEntrySwapperPlugin extends Plugin {
 	static final String BANK_INVENTORY_KEY_PREFIX = "bank_inventory_";
 	static final String BANK_INVENTORY_SHIFT_KEY_PREFIX = "bank_inventory_shift_";
 	
-	private static final Set<MenuAction> menuTypes = Set.of(MenuAction.CC_OP, MenuAction.CC_OP_LOW_PRIORITY);
-	private static final Set<Integer> bankWidgetIds = Set.of(WidgetID.BANK_GROUP_ID/*, WidgetID.GROUP_STORAGE_GROUP_ID*/);
-	private static final Set<Integer> bankInventoryWidgetIds = Set.of(WidgetID.BANK_INVENTORY_GROUP_ID/*, WidgetID.GROUP_STORAGE_INVENTORY_GROUP_ID*/);
+	private static final Set<MenuAction> menuTypes = Sets.newHashSet(MenuAction.CC_OP, MenuAction.CC_OP_LOW_PRIORITY);
+	private static final Set<Integer> bankWidgetIds = Sets.newHashSet(WidgetID.BANK_GROUP_ID/*, WidgetID.GROUP_STORAGE_GROUP_ID*/);
+	private static final Set<Integer> bankInventoryWidgetIds = Sets.newHashSet(WidgetID.BANK_INVENTORY_GROUP_ID/*, WidgetID.GROUP_STORAGE_INVENTORY_GROUP_ID*/);
 	
 	@Inject
 	private Client client;
