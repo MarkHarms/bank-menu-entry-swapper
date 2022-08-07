@@ -151,6 +151,7 @@ public class BankMenuEntrySwapperPlugin extends Plugin {
 		
 		String lastTarget = null;
 		MenuEntry lastEntry = null;
+		int shiftOff = 1;
 		for (int idx = entries.length - 1; idx >= 0; --idx) {
 			
 			MenuEntry entry = entries[idx];
@@ -163,12 +164,13 @@ public class BankMenuEntrySwapperPlugin extends Plugin {
 			if (isCorrectWidget(entry, inventory)) {
 				if (leftIndex == null || !matchesLeft) {
 					int passedIndex = (matchesShift) ? shiftIndex : idx;
-					buildMenuEntry("Swap left click " + entry.getOption(), entry.getTarget(), setConfig(leftString, entry, passedIndex, false));
+					buildMenuEntry(shiftOff, "Swap left click " + entry.getOption(), entry.getTarget(), setConfig(leftString, entry, passedIndex, false));
 				}
 				
 				if (shiftIndex == null || !matchesShift) {
 					int passedIndex = (shiftIndex != null && shiftIndex == idx) ? entries.length - 1 : idx;
 					buildMenuEntry("Swap shift click " + entry.getOption(), entry.getTarget(), setConfig(shiftString, entry, passedIndex, true));
+					shiftOff++;
 				}
 				lastTarget = entry.getTarget();
 				lastEntry = entry;
@@ -180,7 +182,11 @@ public class BankMenuEntrySwapperPlugin extends Plugin {
 	}
 	
 	private MenuEntry buildMenuEntry(String option, String target, Consumer<MenuEntry> setter) {
-		return client.createMenuEntry(0)
+		return buildMenuEntry(1, option, target, setter);
+	}
+	
+	private MenuEntry buildMenuEntry(int index, String option, String target, Consumer<MenuEntry> setter) {
+		return client.createMenuEntry(index)
 				.setOption(option)
 				.setTarget(target)
 				.setType(MenuAction.RUNELITE)
